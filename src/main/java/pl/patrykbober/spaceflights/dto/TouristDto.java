@@ -16,6 +16,10 @@ public class TouristDto
 	private String remarks;
 	private LocalDate dateOfBirth;
 
+	public TouristDto()
+	{
+	}
+
 	public TouristDto(Tourist tourist)
 	{
 		this.id = tourist.getId();

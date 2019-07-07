@@ -46,9 +46,15 @@ public class TouristServiceImpl implements TouristService
 	}
 
 	@Override
-	public Tourist saveTourist(TouristDto tourist)
+	public Tourist createTourist(TouristDto tourist)
 	{
 		return touristRepository.save(tourist.convertToEntity());
+	}
+
+	@Override
+	public Tourist updateTourist(Tourist tourist)
+	{
+		return touristRepository.save(tourist);
 	}
 
 	@Override

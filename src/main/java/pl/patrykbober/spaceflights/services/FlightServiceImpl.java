@@ -53,9 +53,15 @@ public class FlightServiceImpl implements FlightService
 	}
 
 	@Override
-	public Flight saveFlight(FlightDto flight)
+	public Flight createFlight(FlightDto flight)
 	{
 		return flightRepository.save(flight.convertToEntity());
+	}
+
+	@Override
+	public Flight updateFlight(Flight flight)
+	{
+		return flightRepository.save(flight);
 	}
 
 	@Override

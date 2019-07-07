@@ -12,9 +12,11 @@ public interface TouristService
 
 	Set<Tourist> findAllTourists();
 
-	Tourist saveTourist(TouristDto tourist);
+	Set<Flight> findFlightsByTouristId(Long id);
+
+	Tourist createTourist(TouristDto tourist);
+
+	Tourist updateTourist(Tourist tourist);
 
 	void deleteTouristById(Long id);
-
-	Set<Flight> findFlightsByTouristId(Long id);
 }

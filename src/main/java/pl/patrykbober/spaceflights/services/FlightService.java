@@ -12,9 +12,11 @@ public interface FlightService
 
 	Set<Flight> findAllFlights();
 
-	Flight saveFlight(FlightDto flight);
+	Set<Tourist> findTouristsByFlightId(Long id);
+
+	Flight createFlight(FlightDto flight);
+
+	Flight updateFlight(Flight flight);
 
 	void deleteFlightById(Long id);
-
-	Set<Tourist> findTouristsByFlightId(Long id);
 }

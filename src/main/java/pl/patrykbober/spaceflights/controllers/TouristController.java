@@ -2,8 +2,11 @@ package pl.patrykbober.spaceflights.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import pl.patrykbober.spaceflights.domain.Flight;
+import pl.patrykbober.spaceflights.domain.Tourist;
 import pl.patrykbober.spaceflights.dto.FlightDto;
 import pl.patrykbober.spaceflights.dto.TouristDto;
+import pl.patrykbober.spaceflights.services.FlightService;
 import pl.patrykbober.spaceflights.services.TouristService;
 
 import java.util.Set;
@@ -17,9 +20,12 @@ public class TouristController
 
 	private final TouristService touristService;
 
-	public TouristController(TouristService touristService)
+	private final FlightService flightService;
+
+	public TouristController(TouristService touristService, FlightService flightService)
 	{
 		this.touristService = touristService;
+		this.flightService = flightService;
 	}
 
 	@GetMapping
@@ -50,11 +56,33 @@ public class TouristController
 	@ResponseStatus(HttpStatus.CREATED)
 	public TouristDto saveTourist(@RequestBody TouristDto tourist)
 	{
-		return new TouristDto(touristService.saveTourist(tourist));
+		return new TouristDto(touristService.createTourist(tourist));
+	}
+
+	@PostMapping("/{touristId}/add-flight/{flightId}")
+	public TouristDto addFlightToTourist(@PathVariable Long touristId, @PathVariable Long flightId)
+	{
+		Flight flight = flightService.findFlightById(flightId);
+		Tourist tourist = touristService.findTouristById(touristId);
+
+		tourist.addFlight(flight);
+
+		return new TouristDto(touristService.updateTourist(tourist));
+	}
+
+	@DeleteMapping("/{touristId}/remove-flight/{flightId}")
+	public TouristDto removeFlightFromTourist(@PathVariable Long touristId, @PathVariable Long flightId)
+	{
+		Flight flight = flightService.findFlightById(flightId);
+		Tourist tourist = touristService.findTouristById(touristId);
+
+		tourist.removeFlight(flight);
+
+		return new TouristDto(touristService.updateTourist(tourist));
 	}
 
 	@DeleteMapping("/{id}")
-	public void deleteTourist(@PathVariable Long id)
+	public void deleteTouristById(@PathVariable Long id)
 	{
 		touristService.deleteTouristById(id);
 	}

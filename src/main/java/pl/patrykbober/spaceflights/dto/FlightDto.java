@@ -14,6 +14,10 @@ public class FlightDto
 	private Integer numberOfSeats;
 	private Integer ticketPrice;
 
+	public FlightDto()
+	{
+	}
+
 	public FlightDto(Flight flight)
 	{
 		this.id = flight.getId();

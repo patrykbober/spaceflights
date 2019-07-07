@@ -2,9 +2,12 @@ package pl.patrykbober.spaceflights.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import pl.patrykbober.spaceflights.domain.Flight;
+import pl.patrykbober.spaceflights.domain.Tourist;
 import pl.patrykbober.spaceflights.dto.FlightDto;
 import pl.patrykbober.spaceflights.dto.TouristDto;
 import pl.patrykbober.spaceflights.services.FlightService;
+import pl.patrykbober.spaceflights.services.TouristService;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -17,9 +20,12 @@ public class FlightController
 
 	private final FlightService flightService;
 
-	public FlightController(FlightService flightService)
+	private final TouristService touristService;
+
+	public FlightController(FlightService flightService, TouristService touristService)
 	{
 		this.flightService = flightService;
+		this.touristService = touristService;
 	}
 
 	@GetMapping
@@ -50,7 +56,29 @@ public class FlightController
 	@ResponseStatus(HttpStatus.CREATED)
 	public FlightDto saveFlight(@RequestBody FlightDto flight)
 	{
-		return new FlightDto(flightService.saveFlight(flight));
+		return new FlightDto(flightService.createFlight(flight));
+	}
+
+	@PostMapping("/{flightId}/add-tourist/{touristId}")
+	public FlightDto addTouristToFlight(@PathVariable Long flightId, @PathVariable Long touristId)
+	{
+		Tourist tourist = touristService.findTouristById(touristId);
+		Flight flight = flightService.findFlightById(flightId);
+
+		tourist.addFlight(flight);
+
+		return new FlightDto(flightService.updateFlight(flight));
+	}
+
+	@DeleteMapping("/{flightId}/remove-tourist/{touristId}")
+	public FlightDto removeTouristFromFlight(@PathVariable Long flightId, @PathVariable Long touristId)
+	{
+		Tourist tourist = touristService.findTouristById(touristId);
+		Flight flight = flightService.findFlightById(flightId);
+
+		tourist.removeFlight(flight);
+
+		return new FlightDto(flightService.updateFlight(flight));
 	}
 
 	@DeleteMapping("/{id}")
