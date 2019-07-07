@@ -2,7 +2,6 @@ package pl.patrykbober.spaceflights.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import pl.patrykbober.spaceflights.dto.FlightDto;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -23,15 +22,4 @@ public class Flight
 	private Integer ticketPrice;
 	@ManyToMany(mappedBy = "flights", cascade = CascadeType.ALL)
 	private Set<Tourist> tourists = new HashSet<>();
-
-	public FlightDto convertToDto()
-	{
-		FlightDto dto = new FlightDto();
-		dto.setDepartureTime(departureTime);
-		dto.setArrivalTime(arrivalTime);
-		dto.setNumberOfSeats(numberOfSeats);
-		dto.setTicketPrice(ticketPrice);
-
-		return dto;
-	}
 }

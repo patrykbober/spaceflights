@@ -2,8 +2,6 @@ package pl.patrykbober.spaceflights.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import pl.patrykbober.spaceflights.domain.Flight;
-import pl.patrykbober.spaceflights.domain.Tourist;
 import pl.patrykbober.spaceflights.dto.FlightDto;
 import pl.patrykbober.spaceflights.dto.TouristDto;
 import pl.patrykbober.spaceflights.services.TouristService;
@@ -29,14 +27,14 @@ public class TouristController
 	{
 		return touristService.findAllTourists()
 				.stream()
-				.map(Tourist::convertToDto)
+				.map(TouristDto::new)
 				.collect(Collectors.toSet());
 	}
 
 	@GetMapping("/{id}")
 	public TouristDto getTouristById(@PathVariable Long id)
 	{
-		return touristService.findTouristById(id).convertToDto();
+		return new TouristDto(touristService.findTouristById(id));
 	}
 
 	@GetMapping("/{id}/flights")
@@ -44,7 +42,7 @@ public class TouristController
 	{
 		return touristService.findFlightsByTouristId(id)
 				.stream()
-				.map(Flight::convertToDto)
+				.map(FlightDto::new)
 				.collect(Collectors.toSet());
 	}
 
@@ -52,7 +50,7 @@ public class TouristController
 	@ResponseStatus(HttpStatus.CREATED)
 	public TouristDto saveTourist(@RequestBody TouristDto tourist)
 	{
-		return touristService.saveTourist(tourist).convertToDto();
+		return new TouristDto(touristService.saveTourist(tourist));
 	}
 
 	@DeleteMapping("/{id}")

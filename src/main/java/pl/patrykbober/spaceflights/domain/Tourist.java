@@ -2,7 +2,6 @@ package pl.patrykbober.spaceflights.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import pl.patrykbober.spaceflights.dto.TouristDto;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -40,19 +39,6 @@ public class Tourist
 	{
 		flights.remove(flight);
 		flight.getTourists().remove(this);
-	}
-
-	public TouristDto convertToDto()
-	{
-		TouristDto dto = new TouristDto();
-		dto.setFirstName(firstName);
-		dto.setLastName(lastName);
-		dto.setGender(gender);
-		dto.setCountry(country);
-		dto.setRemarks(remarks);
-		dto.setDateOfBirth(dateOfBirth);
-
-		return dto;
 	}
 
 	public static enum Gender

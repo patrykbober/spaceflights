@@ -8,16 +8,29 @@ import java.time.LocalDate;
 @Data
 public class TouristDto
 {
+	private Long id;
 	private String firstName;
 	private String lastName;
-	private Tourist.Gender gender = Tourist.Gender.UNKNOWN;
+	private Tourist.Gender gender;
 	private String country;
 	private String remarks;
 	private LocalDate dateOfBirth;
 
+	public TouristDto(Tourist tourist)
+	{
+		this.id = tourist.getId();
+		this.firstName = tourist.getFirstName();
+		this.lastName = tourist.getLastName();
+		this.gender = tourist.getGender();
+		this.country = tourist.getCountry();
+		this.remarks = tourist.getRemarks();
+		this.dateOfBirth = tourist.getDateOfBirth();
+	}
+
 	public Tourist convertToEntity()
 	{
 		Tourist entity = new Tourist();
+		entity.setId(id);
 		entity.setFirstName(firstName);
 		entity.setLastName(lastName);
 		entity.setGender(gender);
