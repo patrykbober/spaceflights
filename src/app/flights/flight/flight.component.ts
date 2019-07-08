@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Flight } from "../../shared/models/flight";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
+import {FlightsService} from "../../shared/services/flights.service";
 
 @Component({
   selector: 'app-flight',
@@ -7,9 +10,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FlightComponent implements OnInit {
 
-  constructor() { }
+  private id: number;
+  private flight: Flight;
+
+  constructor(private route: ActivatedRoute, private router: Router,
+              private flightService: FlightsService) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+      return false;
+    };
+
+    this.router.events.subscribe((evt) => {
+      if (evt instanceof NavigationEnd) {
+        this.router.navigated = false;
+        window.scrollTo(0, 0);
+      }
+    });
+  }
 
   ngOnInit() {
+    this.id = Number(this.route.snapshot.paramMap.get('flightId'));
+    this.getFlight();
+  }
+
+  getFlight() {
+    this.flightService.getFlightById(this.id)
+        .subscribe(
+        flight => {
+          this.flight = flight;
+        },
+        error => {
+          alert("An error has occurred");
+        });
+  }
+
+  onSubmit() {
+    this.flightService.deleteFlightById(this.id).subscribe();
+    this.router.navigate(['/flights']);
   }
 
 }

@@ -1,1 +1,34 @@
-<p>tourist-flights works!</p>
+<h4>List of flights </h4>
+
+<p class="alert-info" *ngIf="!touristFlights?.length">No flights have been assigned to this tourist yet.</p>
+
+<table class="table" mat-table [dataSource]="touristFlights" matSort *ngIf="touristFlights?.length">
+  <ng-container matColumnDef="id">
+    <th *matHeaderCellDef mat-sort-header> Id </th>
+    <td *matCellDef="let touristFlight"> {{touristFlight.id}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="departureTime">
+    <th *matHeaderCellDef> Departure time </th>
+    <td *matCellDef="let touristFlight"> {{touristFlight.departureTime}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="arrivalTime">
+    <th *matHeaderCellDef> Arrival time </th>
+    <td *matCellDef="let touristFlight"> {{touristFlight.arrivalTime}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="numberOfSeats">
+    <th *matHeaderCellDef> Number of seats </th>
+    <td *matCellDef="let touristFlight"> {{touristFlight.numberOfSeats}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="ticketPrice">
+    <th *matHeaderCellDef> Ticket price </th>
+    <td *matCellDef="let touristFlight"> {{touristFlight.ticketPrice}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <!--<tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="routeToTourist(row.id)"></tr>-->
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

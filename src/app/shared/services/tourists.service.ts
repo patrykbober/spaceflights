@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient } from "@angular/common/http";
+
 import { Tourist } from "../models/tourist";
 import { Observable } from "rxjs";
+import { Flight } from "../models/flight";
 
 @Injectable({
   providedIn: 'root'
@@ -21,12 +22,12 @@ export class TouristsService {
     return this.http.get<Tourist>(url);
   }
 
-  // getFlightsByTouristId(id: number) : Observable<Flight> {
-  //   const url = `${this.BASE_URL}/${id}/flights`;
-  //   return this.http.get(url);
-  // }
+  getFlightsByTouristId(id: number) : Observable<Flight[]> {
+    const url = `${this.BASE_URL}/${id}/flights`;
+    return this.http.get<Flight[]>(url);
+  }
 
-  addTourist(tourist: any) : Observable<Tourist> {
+  addTourist(tourist: Tourist) : Observable<Tourist> {
     return this.http.post<Tourist>(this.BASE_URL, tourist);
   }
 
@@ -34,5 +35,4 @@ export class TouristsService {
     const url = `${this.BASE_URL}/${id}`;
     return this.http.delete<Tourist>(url);
   }
-
 }

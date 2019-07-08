@@ -5,10 +5,10 @@ import { Tourist } from "../../../shared/models/tourist";
 
 @Component({
   selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+  templateUrl: './create-tourist.component.html',
+  styleUrls: ['./create-tourist.component.scss']
 })
-export class AddComponent implements OnInit {
+export class CreateTouristComponent implements OnInit {
 
   addTouristForm: FormGroup;
   private submitted: boolean = false;
@@ -22,7 +22,10 @@ export class AddComponent implements OnInit {
       country: ['', Validators.required],
       remarks: [''],
       dateOfBirth: ['', Validators.required]
-    })
+    });
+  }
+
+  ngOnInit() {
   }
 
   onSubmit() {
@@ -34,14 +37,9 @@ export class AddComponent implements OnInit {
 
     this.success = true;
 
-    console.log(this.addTouristForm.value);
     let newTourist: Tourist = this.addTouristForm.value;
-    console.log(newTourist);
     this.touristService.addTourist(newTourist).subscribe();
-    //this.addTouristForm.reset();
-  }
-
-  ngOnInit() {
+    this.addTouristForm.reset();
   }
 
 }

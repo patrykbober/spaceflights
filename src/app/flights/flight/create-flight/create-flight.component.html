@@ -1,0 +1,50 @@
+<h1>Add flight</h1>
+
+<hr />
+
+<form class="form-horizontal" [formGroup]="addFlightForm" (ngSubmit)="onSubmit()">
+  <fieldset>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label">Departure time</label>
+      <div class="col-md-4">
+        <input type="text" formControlName="departureTime" class="form-control input-md" title="departureTime">
+
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label">Arrival time</label>
+      <div class="col-md-4">
+        <input type="text" formControlName="arrivalTime" class="form-control input-md" title="arrivalTime">
+
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label">Number of seats</label>
+      <div class="col-md-4">
+        <input type="text" formControlName="numberOfSeats" class="form-control input-md" title="numberOfSeats">
+
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label">Ticket price</label>
+      <div class="col-md-4">
+        <input type="text" formControlName="ticketPrice" class="form-control input-md" title="ticketPrice">
+
+      </div>
+    </div>
+
+  </fieldset>
+
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary">Add flight</button>
+
+</form>
+

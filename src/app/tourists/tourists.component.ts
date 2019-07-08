@@ -30,7 +30,7 @@ export class TouristsComponent implements OnInit {
           });
   }
 
-  addTourist(newTourist : Tourist) : void {
+  addTourist(newTourist: Tourist) : void {
     this.touristService.addTourist(newTourist)
         .subscribe(
           tourist => {
@@ -41,6 +41,7 @@ export class TouristsComponent implements OnInit {
           });
   }
 
+  // method for testing purposes only
   addTheTourist() : void {
     const theTourist = {
       firstName: "Gary",
@@ -51,7 +52,7 @@ export class TouristsComponent implements OnInit {
       dateOfBirth: "1994-11-02"
     };
 
-    this.touristService.addTourist(theTourist)
+    this.touristService.addTourist(theTourist as Tourist)
         .subscribe(tourist => this.tourists.push());
     this.ngOnInit();
   }

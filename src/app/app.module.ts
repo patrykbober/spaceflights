@@ -15,11 +15,15 @@ import { TouristsComponent } from './tourists/tourists.component';
 import { FlightsComponent } from './flights/flights.component';
 
 import { TouristsService } from "./shared/services/tourists.service";
-import { FlightsService } from "./flights/flights.service";
+import { FlightsService } from "./shared/services/flights.service";
 import { TouristComponent } from './tourists/tourist/tourist.component';
 import { FlightComponent } from './flights/flight/flight.component';
-import { AddComponent } from './tourists/tourist/add/add.component';
+import { CreateTouristComponent } from './tourists/tourist/create-tourist/create-tourist.component';
 import { TouristFlightsComponent } from './tourists/tourist/tourist-flights/tourist-flights.component';
+import { AddFlightComponent } from './tourists/tourist/add-flight/add-flight.component';
+import { CreateFlightComponent } from './flights/flight/create-flight/create-flight.component';
+import { FlightTouristsComponent } from './flights/flight/flight-tourists/flight-tourists.component';
+import { AddTouristComponent } from './flights/flight/add-tourist/add-tourist.component';
 
 @NgModule({
   declarations: [
@@ -30,8 +34,12 @@ import { TouristFlightsComponent } from './tourists/tourist/tourist-flights/tour
     FlightsComponent,
     TouristComponent,
     FlightComponent,
-    AddComponent,
-    TouristFlightsComponent
+    CreateTouristComponent,
+    TouristFlightsComponent,
+    AddFlightComponent,
+    CreateFlightComponent,
+    FlightTouristsComponent,
+    AddTouristComponent
   ],
   imports: [
     BrowserModule,

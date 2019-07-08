@@ -1,1 +1,24 @@
-<p>flight works!</p>
+<h1>Flight id {{ flight?.id }}</h1>
+
+<hr />
+
+<h4>Departure time</h4>
+<p>{{ flight?.departureTime }}</p>
+
+<h4>Arrival time</h4>
+<p>{{ flight?.arrivalTime }}</p>
+
+<h4>Number of seats</h4>
+<p>{{ flight?.numberOfSeats }}</p>
+
+<h4>Ticket price</h4>
+<p>{{ flight?.ticketPrice }}</p>
+
+<app-flight-tourists [id]="id"></app-flight-tourists>
+
+<hr />
+
+<form (ngSubmit)="onSubmit()">
+  <button type="submit" class="btn btn-primary">Delete flight</button>
+</form>
+<button routerLink="add" class="btn btn-primary">Add a tourist</button>
