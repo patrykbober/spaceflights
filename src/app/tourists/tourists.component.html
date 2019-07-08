@@ -1,1 +1,11 @@
 <p>tourists works!</p>
+
+<hr />
+
+<ul>
+  <li *ngFor="let tourist of tourists">{{ tourist.firstName }} {{ tourist.lastName }}</li>
+</ul>
+
+<hr />
+
+<button (click)="addTheTourist()">Add the Tourist</button>

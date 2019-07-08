@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,19 +10,28 @@ import { HomeComponent } from './home/home.component';
 import { TouristsComponent } from './tourists/tourists.component';
 import { FlightsComponent } from './flights/flights.component';
 
+import { TouristsService } from "./shared/services/tourists.service";
+import { FlightsService } from "./flights/flights.service";
+import { TouristComponent } from './tourists/tourist/tourist.component';
+import { FlightComponent } from './flights/flight/flight.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     HomeComponent,
     TouristsComponent,
-    FlightsComponent
+    FlightsComponent,
+    TouristComponent,
+    FlightComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [TouristsService, FlightsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
