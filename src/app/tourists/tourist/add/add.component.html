@@ -1,0 +1,70 @@
+<h1>Add tourist</h1>
+
+<hr />
+
+<form class="form-horizontal" [formGroup]="addTouristForm" (ngSubmit)="onSubmit()">
+  <fieldset>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label">First name</label>
+      <div class="col-md-4">
+        <input type="text" formControlName="firstName" class="form-control input-md" title="firstName">
+
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label">Last name</label>
+      <div class="col-md-4">
+        <input type="text" formControlName="lastName" class="form-control input-md" title="lastName">
+
+      </div>
+    </div>
+
+    <!--Select Basic-->
+    <div class="form-group">
+      <label class="col-md-4 control-label">Gender</label>
+      <div class="col-md-4">
+        <select formControlName="gender" class="form-control" title="gender">
+          <option value="FEMALE">Female</option>
+          <option value="MALE">Male</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label">Country</label>
+      <div class="col-md-4">
+        <input type="text" formControlName="country" class="form-control input-md" title="country">
+
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label">Remarks</label>
+      <div class="col-md-4">
+        <input type="text" formControlName="remarks" class="form-control input-md" title="remarks">
+
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label">Date of birth</label>
+      <div class="col-md-4">
+        <input type="text" formControlName="dateOfBirth" class="form-control input-md" title="dateOfBirth">
+
+      </div>
+    </div>
+
+  </fieldset>
+
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary">Add tourist</button>
+
+</form>
+

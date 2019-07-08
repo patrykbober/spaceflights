@@ -2,6 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { MatTableModule } from "@angular/material/table";
+import { MatSortModule } from "@angular/material/sort";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +18,8 @@ import { TouristsService } from "./shared/services/tourists.service";
 import { FlightsService } from "./flights/flights.service";
 import { TouristComponent } from './tourists/tourist/tourist.component';
 import { FlightComponent } from './flights/flight/flight.component';
+import { AddComponent } from './tourists/tourist/add/add.component';
+import { TouristFlightsComponent } from './tourists/tourist/tourist-flights/tourist-flights.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +29,19 @@ import { FlightComponent } from './flights/flight/flight.component';
     TouristsComponent,
     FlightsComponent,
     TouristComponent,
-    FlightComponent
+    FlightComponent,
+    AddComponent,
+    TouristFlightsComponent
   ],
   imports: [
     BrowserModule,
+    MatTableModule,
+    MatSortModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [TouristsService, FlightsService],
   bootstrap: [AppComponent]

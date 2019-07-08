@@ -12,8 +12,8 @@ export class TouristsService {
 
   constructor(private http: HttpClient) { }
 
-  getAllTourists() : Observable<Tourist> {
-    return this.http.get<Tourist>(this.BASE_URL);
+  getAllTourists() : Observable<Tourist[]> {
+    return this.http.get<Tourist[]>(this.BASE_URL);
   }
 
   getTouristById(id: number) : Observable<Tourist> {

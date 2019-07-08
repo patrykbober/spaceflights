@@ -1,11 +1,33 @@
-<p>tourists works!</p>
+<h1>List of tourists</h1>
 
 <hr />
 
-<ul>
-  <li *ngFor="let tourist of tourists">{{ tourist.firstName }} {{ tourist.lastName }}</li>
-</ul>
+<table class="table" mat-table [dataSource]="tourists" matSort>
+  <ng-container matColumnDef="id">
+    <th *matHeaderCellDef mat-sort-header> Id </th>
+    <td *matCellDef="let tourist"> {{tourist.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="firstName">
+    <th *matHeaderCellDef> First name </th>
+    <td *matCellDef="let tourist"> {{tourist.firstName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="lastName">
+    <th *matHeaderCellDef> Last name </th>
+    <td *matCellDef="let tourist"> {{tourist.lastName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="dateOfBirth">
+    <th *matHeaderCellDef> Date of birth </th>
+    <td *matCellDef="let tourist"> {{tourist.dateOfBirth}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="routeToTourist(row.id)"></tr>
+</table>
 
 <hr />
 
-<button (click)="addTheTourist()">Add the Tourist</button>
+<button routerLink="add" class="btn btn-primary">Add new tourist</button>
+<button (click)="addTheTourist()" class="btn btn-info">Add Gary</button>

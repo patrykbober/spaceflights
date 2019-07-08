@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router} from "@angular/router";
 import { TouristsService } from "../shared/services/tourists.service";
 import { Tourist } from "../shared/models/tourist";
 
@@ -9,9 +10,10 @@ import { Tourist } from "../shared/models/tourist";
 })
 export class TouristsComponent implements OnInit {
 
-  tourists;
+  tourists: Tourist[] = [];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'dateOfBirth'];
 
-  constructor(private touristService: TouristsService) { }
+  constructor(private touristService: TouristsService, private router: Router) { }
 
   ngOnInit() {
     this.getAllTourists();
@@ -24,7 +26,7 @@ export class TouristsComponent implements OnInit {
             this.tourists = tourists;
           },
           error => {
-            alert("An error has occured");
+            alert("An error has occurred");
           });
   }
 
@@ -35,7 +37,7 @@ export class TouristsComponent implements OnInit {
             this.tourists.push(newTourist);
         },
           error => {
-            alert("An error has occured");
+            alert("An error has occurred");
           });
   }
 
@@ -51,6 +53,10 @@ export class TouristsComponent implements OnInit {
 
     this.touristService.addTourist(theTourist)
         .subscribe(tourist => this.tourists.push());
+    this.ngOnInit();
   }
 
+  routeToTourist(id: number) {
+    this.router.navigate(['/tourists/', id]);
+  }
 }
