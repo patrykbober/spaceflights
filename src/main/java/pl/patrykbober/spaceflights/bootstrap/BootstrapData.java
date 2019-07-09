@@ -36,7 +36,7 @@ public class BootstrapData implements CommandLineRunner
 		Flight f2 = new Flight();
 		f2.setDepartureTime(LocalDateTime.of(2019, 7, 3, 12, 35));
 		f2.setArrivalTime(LocalDateTime.of(2019, 7, 3, 15, 50));
-		f2.setNumberOfSeats(260);
+		f2.setNumberOfSeats(1);
 		f2.setTicketPrice(200);
 
 		Tourist t1 = new Tourist();

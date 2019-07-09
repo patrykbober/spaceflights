@@ -18,5 +18,9 @@ public interface FlightService
 
 	Flight updateFlight(Flight flight);
 
+	Flight addTouristToFlight(Long flightId, Tourist tourist);
+
+	Flight removeTouristFromFlight(Long flightId, Tourist tourist);
+
 	void deleteFlightById(Long id);
 }

@@ -18,5 +18,9 @@ public interface TouristService
 
 	Tourist updateTourist(Tourist tourist);
 
+	Tourist addFlightToTourist(Long touristId, Flight flight);
+
+	Tourist removeFlightFromTourist(Long touristId, Flight flight);
+
 	void deleteTouristById(Long id);
 }

@@ -3,7 +3,6 @@ package pl.patrykbober.spaceflights.controllers;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.patrykbober.spaceflights.domain.Flight;
-import pl.patrykbober.spaceflights.domain.Tourist;
 import pl.patrykbober.spaceflights.dto.FlightDto;
 import pl.patrykbober.spaceflights.dto.TouristDto;
 import pl.patrykbober.spaceflights.services.FlightService;
@@ -64,22 +63,16 @@ public class TouristController
 	public TouristDto addFlightToTourist(@PathVariable Long touristId, @RequestBody FlightDto flightId)
 	{
 		Flight flight = flightService.findFlightById(flightId.getId());
-		Tourist tourist = touristService.findTouristById(touristId);
 
-		tourist.addFlight(flight);
-
-		return new TouristDto(touristService.updateTourist(tourist));
+		return new TouristDto(touristService.addFlightToTourist(touristId, flight));
 	}
 
 	@DeleteMapping("/{touristId}/flights")
 	public TouristDto removeFlightFromTourist(@PathVariable Long touristId, @RequestBody FlightDto flightId)
 	{
 		Flight flight = flightService.findFlightById(flightId.getId());
-		Tourist tourist = touristService.findTouristById(touristId);
 
-		tourist.removeFlight(flight);
-
-		return new TouristDto(touristService.updateTourist(tourist));
+		return new TouristDto(touristService.removeFlightFromTourist(touristId, flight));
 	}
 
 	@DeleteMapping("/{id}")
