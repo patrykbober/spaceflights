@@ -3,13 +3,13 @@
 <hr />
 
 <form class="form-horizontal" [formGroup]="removeFlightForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label class="col-md-4 control-label">Choose flight</label>
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">Choose flight</label>
     <div class="col-md-4">
       <select formControlName="id" class="form-control custom-select">
         <option *ngFor="let flight of flights" [value]="flight.id">
-          {{ flight.departureTime + ', ' + flight.arrivalTime +
-            ', ' + flight.numberOfSeats + ', ' + flight.ticketPrice }}
+          {{ (flight.departureTime | date: 'dd.MM.yy, HH:mm') + ' - ' + (flight.arrivalTime | date: 'dd.MM.yy, HH:mm') +
+          '; ' + flight.numberOfSeats + '; ' + flight.ticketPrice }}
         </option>
       </select>
     </div>

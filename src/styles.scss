@@ -4,6 +4,11 @@
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 
+$bgDefault      : #59b664;
+$bgHighlight    : #448b4c;
+$colDefault     : #ecf0f1;
+$colHighlight   : #d6d6d6;
+
 body, html {
   height: 100%;
   margin: 0 auto;
@@ -36,5 +41,18 @@ section {
   padding: 2em;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.btn-primary {
+  color: #fff;
+  background-color: $bgDefault;
+  border-color: darken($bgDefault, 5);
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: $bgHighlight;
+  border-color: darken($bgHighlight, 5);
+}
+
+.table-hover tr {
+  cursor: pointer;
+}

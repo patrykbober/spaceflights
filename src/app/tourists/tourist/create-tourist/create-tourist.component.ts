@@ -21,7 +21,7 @@ export class CreateTouristComponent implements OnInit {
       gender: ['', Validators.required],
       country: ['', Validators.required],
       remarks: [''],
-      dateOfBirth: ['', Validators.required]
+      dateOfBirth: ['YYYY-MM-DD', Validators.required]
     });
   }
 
@@ -38,7 +38,9 @@ export class CreateTouristComponent implements OnInit {
     this.success = true;
 
     let newTourist: Tourist = this.createTouristForm.value;
-    this.touristService.addTourist(newTourist).subscribe();
+    this.touristService.addTourist(newTourist)
+        .subscribe(tourist => console.log(tourist),
+            error => alert(error.error.message));
     this.createTouristForm.reset();
   }
 

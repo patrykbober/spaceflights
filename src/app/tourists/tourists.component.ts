@@ -21,24 +21,14 @@ export class TouristsComponent implements OnInit {
 
   getAllTourists() : void {
     this.touristService.getAllTourists()
-        .subscribe(
-          tourists => {
-            this.tourists = tourists;
-          },
-          error => {
-            alert("An error has occurred");
-          });
+        .subscribe(tourists => this.tourists = tourists,
+            error => alert(error.error.message));
   }
 
   addTourist(newTourist: Tourist) : void {
     this.touristService.addTourist(newTourist)
-        .subscribe(
-          tourist => {
-            this.tourists.push(newTourist);
-        },
-          error => {
-            alert("An error has occurred");
-          });
+        .subscribe(tourist => this.tourists.push(newTourist),
+            error => alert(error.error.message));
   }
 
   // method for testing purposes only
@@ -53,7 +43,8 @@ export class TouristsComponent implements OnInit {
     };
 
     this.touristService.addTourist(theTourist as Tourist)
-        .subscribe(tourist => this.tourists.push());
+        .subscribe(tourist => this.tourists.push(theTourist as Tourist),
+            error => alert(error.error.message));
     this.ngOnInit();
   }
 

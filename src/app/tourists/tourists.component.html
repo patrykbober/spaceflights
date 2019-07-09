@@ -4,7 +4,7 @@
 
 <p class="alert-info" *ngIf="!tourists?.length">No tourists found.</p>
 
-<table class="table" mat-table [dataSource]="tourists" matSort *ngIf="tourists?.length">
+<table class="table table-hover" mat-table [dataSource]="tourists" matSort *ngIf="tourists?.length">
   <ng-container matColumnDef="id">
     <th *matHeaderCellDef mat-sort-header> Id </th>
     <td *matCellDef="let tourist"> {{tourist.id}} </td>
@@ -31,5 +31,5 @@
 
 <hr />
 
-<button routerLink="add" class="btn btn-primary">Add new tourist</button>
-<button (click)="addTheTourist()" class="btn btn-info">Add Gary</button>
+<button routerLink="add" class="btn btn-primary mr-1">Add new tourist</button>
+<!--<button (click)="addTheTourist()" class="btn btn-info">Add Gary</button>-->

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { TouristsService } from "../../shared/services/tourists.service";
 import { Tourist } from "../../shared/models/tourist";
 
@@ -29,22 +29,24 @@ export class TouristComponent implements OnInit {
 
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('touristId'));
-    this.getTourist();
+    if (!isNaN(this.id)) {
+      this.getTourist();
+    }
+    else {
+      this.router.navigate(['/']);
+    }
   }
 
   getTourist() {
     this.touristService.getTouristById(this.id)
-        .subscribe(
-          tourist => {
-          this.tourist = tourist;
-        },
-          error1 => {
-          alert("An error has occurred");
-          });
+        .subscribe(tourist => this.tourist = tourist,
+            error => alert(error.error.message));
   }
 
   onSubmit() {
-    this.touristService.deleteTouristById(this.id).subscribe();
+    this.touristService.deleteTouristById(this.id)
+        .subscribe(tourist => console.log(tourist),
+            error => alert(error.message));
     this.router.navigate(['/tourists']);
   }
 

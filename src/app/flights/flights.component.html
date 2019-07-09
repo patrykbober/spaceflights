@@ -4,7 +4,7 @@
 
 <p class="alert-info" *ngIf="!flights?.length">No flights found.</p>
 
-<table class="table" mat-table [dataSource]="flights" matSort *ngIf="flights?.length">
+<table class="table table-hover" mat-table [dataSource]="flights" matSort *ngIf="flights?.length">
   <ng-container matColumnDef="id">
     <th *matHeaderCellDef mat-sort-header> Id </th>
     <td *matCellDef="let flight"> {{flight.id}}</td>
@@ -12,12 +12,12 @@
 
   <ng-container matColumnDef="departureTime">
     <th *matHeaderCellDef> Departure time </th>
-    <td *matCellDef="let flight"> {{flight.departureTime}}</td>
+    <td *matCellDef="let flight"> {{flight.departureTime | date: 'dd.MM.yy, HH:mm' }}</td>
   </ng-container>
 
   <ng-container matColumnDef="arrivalTime">
     <th *matHeaderCellDef> Arrival time </th>
-    <td *matCellDef="let flight"> {{flight.arrivalTime}}</td>
+    <td *matCellDef="let flight"> {{flight.arrivalTime | date: 'dd.MM.yy, HH:mm' }}</td>
   </ng-container>
 
   <ng-container matColumnDef="numberOfSeats">
@@ -36,5 +36,5 @@
 
 <hr />
 
-<button routerLink="add" class="btn btn-primary">Add new flight</button>
-<button (click)="addTheFlight()" class="btn btn-info">Add the Flight</button>
+<button routerLink="add" class="btn btn-primary mr-1">Add new flight</button>
+<!--<button (click)="addTheFlight()" class="btn btn-info">Add the Flight</button>-->

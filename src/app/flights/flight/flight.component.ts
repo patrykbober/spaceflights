@@ -29,22 +29,24 @@ export class FlightComponent implements OnInit {
 
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('flightId'));
-    this.getFlight();
+    if (!isNaN(this.id)) {
+      this.getFlight();
+    }
+    else {
+      this.router.navigate(['/']);
+    }
   }
 
   getFlight() {
     this.flightService.getFlightById(this.id)
-        .subscribe(
-        flight => {
-          this.flight = flight;
-        },
-        error => {
-          alert("An error has occurred");
-        });
+        .subscribe(flight => this.flight = flight,
+            error => alert(error.error.message));
   }
 
   onSubmit() {
-    this.flightService.deleteFlightById(this.id).subscribe();
+    this.flightService.deleteFlightById(this.id)
+        .subscribe(flight => console.log(flight),
+            error => alert(error.error.message));
     this.router.navigate(['/flights']);
   }
 

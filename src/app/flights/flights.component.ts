@@ -21,24 +21,14 @@ export class FlightsComponent implements OnInit {
 
   getAllFlights() : void {
     this.flightService.getAllFlights()
-        .subscribe(
-        flights => {
-          this.flights = flights;
-        },
-        error => {
-          alert("An error has occurred");
-        });
+        .subscribe(flights => this.flights = flights,
+            error => alert("An error has occurred"));
   }
 
   addFlight(newFlight: Flight) : void {
     this.flightService.addFlight(newFlight)
-        .subscribe(
-        flight => {
-          this.flights.push(newFlight);
-        },
-        error => {
-          alert("An error has occurred");
-        });
+        .subscribe(flight => this.flights.push(newFlight),
+            error => alert(error.error.message));
   }
 
   // method for testing purposes only
@@ -51,7 +41,8 @@ export class FlightsComponent implements OnInit {
     };
 
     this.flightService.addFlight(theFlight as Flight)
-      .subscribe(flight => this.flights.push(theFlight as Flight));
+        .subscribe(flight => this.flights.push(theFlight as Flight),
+            error => alert(error.error.message));
     this.ngOnInit();
   }
 

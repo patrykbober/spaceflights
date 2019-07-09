@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Flight} from "../../../shared/models/flight";
 import {FlightsService} from "../../../shared/services/flights.service";
 import {TouristsService} from "../../../shared/services/tourists.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-remove-tourist',
@@ -19,7 +19,8 @@ export class RemoveFlightComponent implements OnInit {
   private flights: Flight[] = [];
 
   constructor(private formBuilder: FormBuilder, private flightService: FlightsService,
-              private touristService: TouristsService, private route: ActivatedRoute) {
+              private touristService: TouristsService, private route: ActivatedRoute,
+              private router: Router) {
     this.removeFlightForm = this.formBuilder.group({
       id: ['', Validators.required]
     });
@@ -39,19 +40,17 @@ export class RemoveFlightComponent implements OnInit {
 
     this.success = true;
 
-    this.touristService.removeFlightFromTourist(this.touristId, this.removeFlightForm.value).subscribe();
+    this.touristService.removeFlightFromTourist(this.touristId, this.removeFlightForm.value)
+        .subscribe(tourist => console.log(tourist),
+            error => alert(error.error.message));
     this.removeFlightForm.reset();
+    this.router.navigate(['/tourists', this.touristId]);
   }
 
   getTouristsFlights() : void {
     this.touristService.getFlightsByTouristId(this.touristId)
-      .subscribe(
-        flights => {
-          this.flights = flights;
-        },
-        error => {
-          alert("An error has occurred");
-        });
+        .subscribe(flights => this.flights = flights,
+            error => alert(error.error.message));
   }
 
 }

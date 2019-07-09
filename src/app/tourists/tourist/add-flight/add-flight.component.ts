@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TouristsService} from "../../../shared/services/tourists.service";
 import {FlightsService} from "../../../shared/services/flights.service";
-import {ActivatedRoute} from "@angular/router";
-import {Tourist} from "../../../shared/models/tourist";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Flight} from "../../../shared/models/flight";
 
 @Component({
@@ -20,7 +19,8 @@ export class AddFlightComponent implements OnInit {
   private flights: Flight[] = [];
 
   constructor(private formBuilder: FormBuilder, private touristService: TouristsService,
-              private flightService: FlightsService, private route: ActivatedRoute) {
+              private flightService: FlightsService, private route: ActivatedRoute,
+              private router: Router) {
     this.addFlightForm = this.formBuilder.group({
       id: ['', Validators.required]
     });
@@ -40,19 +40,17 @@ export class AddFlightComponent implements OnInit {
 
     this.success = true;
 
-    this.touristService.addFlightToTourist(this.touristId, this.addFlightForm.value).subscribe();
+    this.touristService.addFlightToTourist(this.touristId, this.addFlightForm.value)
+        .subscribe(tourist => console.log(tourist),
+            error => alert(error.error.message));
     this.addFlightForm.reset();
+    this.router.navigate(['/tourists', this.touristId]);
   }
 
   getAllFlights() : void {
     this.flightService.getAllFlights()
-      .subscribe(
-        flights => {
-          this.flights = flights;
-        },
-        error => {
-          alert("An error has occurred");
-        });
+        .subscribe(flights => this.flights = flights,
+            error => alert(error.error.message));
   }
 
 }

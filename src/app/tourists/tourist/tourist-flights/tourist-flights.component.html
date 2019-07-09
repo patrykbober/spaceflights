@@ -1,8 +1,8 @@
 <h4>List of flights </h4>
 
-<p class="alert-info" *ngIf="!touristFlights?.length">No flights have been assigned to this tourist yet.</p>
+<p class="alert alert-secondary" *ngIf="!touristFlights?.length">No flights have been assigned to this tourist yet.</p>
 
-<table class="table" mat-table [dataSource]="touristFlights" matSort *ngIf="touristFlights?.length">
+<table class="table table-hover" mat-table [dataSource]="touristFlights" matSort *ngIf="touristFlights?.length">
   <ng-container matColumnDef="id">
     <th *matHeaderCellDef mat-sort-header> Id </th>
     <td *matCellDef="let touristFlight"> {{touristFlight.id}}</td>
@@ -10,12 +10,12 @@
 
   <ng-container matColumnDef="departureTime">
     <th *matHeaderCellDef> Departure time </th>
-    <td *matCellDef="let touristFlight"> {{touristFlight.departureTime}}</td>
+    <td *matCellDef="let touristFlight"> {{touristFlight.departureTime | date: 'dd.MM.yy, HH:mm'}}</td>
   </ng-container>
 
   <ng-container matColumnDef="arrivalTime">
     <th *matHeaderCellDef> Arrival time </th>
-    <td *matCellDef="let touristFlight"> {{touristFlight.arrivalTime}}</td>
+    <td *matCellDef="let touristFlight"> {{touristFlight.arrivalTime | date: 'dd.MM.yy, HH:mm'}}</td>
   </ng-container>
 
   <ng-container matColumnDef="numberOfSeats">
@@ -29,6 +29,5 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <!--<tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="routeToTourist(row.id)"></tr>-->
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="routeToFlight(row.id)"></tr>
 </table>

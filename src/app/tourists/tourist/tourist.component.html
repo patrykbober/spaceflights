@@ -9,7 +9,7 @@
 <p>{{ tourist?.country }}</p>
 
 <h4>Date of birth</h4>
-<p>{{ tourist?.dateOfBirth }}</p>
+<p>{{ tourist?.dateOfBirth | date: 'dd.MM.yyyy'}}</p>
 
 <h4>Remarks</h4>
 <p>{{ tourist?.remarks }}</p>
@@ -19,7 +19,7 @@
 <hr />
 
 <form (ngSubmit)="onSubmit()">
-  <button type="submit" class="btn btn-primary">Delete tourist</button>
+  <button type="submit" class="btn btn-primary mr-1">Delete this tourist</button>
+  <button type="button" routerLink="add" class="btn btn-primary mr-1">Add a flight</button>
+  <button type="button" routerLink="remove" class="btn btn-primary">Remove a flight</button>
 </form>
-<button routerLink="add" class="btn btn-primary">Add a flight</button>
-<button routerLink="remove" class="btn btn-primary">Remove a flight</button>

@@ -3,13 +3,13 @@
 <hr />
 
 <form class="form-horizontal" [formGroup]="removeTouristForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label class="col-md-4 control-label">Choose tourist</label>
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">Choose tourist</label>
     <div class="col-md-4">
       <select formControlName="id" class="form-control custom-select">
         <option *ngFor="let tourist of tourists" [value]="tourist.id">
           {{ tourist.firstName + ' ' + tourist.lastName +
-          ', ' + tourist.country + ', ' + tourist.dateOfBirth }}
+          ', ' + tourist.country + ', ' + (tourist.dateOfBirth | date: 'dd.MM.yy') }}
         </option>
       </select>
     </div>
