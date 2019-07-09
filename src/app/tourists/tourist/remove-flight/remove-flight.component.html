@@ -1,20 +1,20 @@
-<h1>Add flight to tourist</h1>
+<h1>Remove flight from tourist</h1>
 
 <hr />
 
-<form class="form-horizontal" [formGroup]="addFlightForm" (ngSubmit)="onSubmit()">
+<form class="form-horizontal" [formGroup]="removeFlightForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label class="col-md-4 control-label">Choose flight</label>
     <div class="col-md-4">
       <select formControlName="id" class="form-control custom-select">
         <option *ngFor="let flight of flights" [value]="flight.id">
           {{ flight.departureTime + ', ' + flight.arrivalTime +
-          ', ' + flight.numberOfSeats + ', ' + flight.ticketPrice }}
+            ', ' + flight.numberOfSeats + ', ' + flight.ticketPrice }}
         </option>
       </select>
     </div>
   </div>
 
   <!-- Submit button -->
-  <button type="submit" class="btn btn-primary">Add flight</button>
+  <button type="submit" class="btn btn-primary">Remove flight</button>
 </form>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 import { Tourist } from "../models/tourist";
 import { Observable } from "rxjs";
@@ -25,6 +25,22 @@ export class FlightsService {
   getTouristsByFlightId(id: number) : Observable<Tourist[]> {
     const url = `${this.BASE_URL}/${id}/tourists`;
     return this.http.get<Tourist[]>(url);
+  }
+
+  addTouristToFlight(flightId: number, tourist: Tourist) : Observable<Flight> {
+    const url = `${this.BASE_URL}/${flightId}/tourists`;
+    return this.http.post<Flight>(url, tourist);
+  }
+
+  removeTouristFromFlight(flightId: number, tourist: Tourist) : Observable<Flight> {
+    const url = `${this.BASE_URL}/${flightId}/tourists`;
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: tourist,
+    };
+    return this.http.delete<Flight>(url, options);
   }
 
   addFlight(flight: Flight) : Observable<Flight> {

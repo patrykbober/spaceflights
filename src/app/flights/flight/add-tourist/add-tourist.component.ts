@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { TouristsService } from "../../../shared/services/tourists.service";
+import { Tourist } from "../../../shared/models/tourist";
+import { FlightsService } from "../../../shared/services/flights.service";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-add-tourist',
@@ -7,9 +12,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddTouristComponent implements OnInit {
 
-  constructor() { }
+  private flightId: number;
+  private addTouristForm: FormGroup;
+  private submitted: boolean = false;
+  private success: boolean = false;
+  private tourists: Tourist[] = [];
+
+  constructor(private formBuilder: FormBuilder, private touristService: TouristsService,
+              private flightService: FlightsService, private route: ActivatedRoute) {
+    this.addTouristForm = this.formBuilder.group({
+      id: ['', Validators.required]
+    });
+  }
 
   ngOnInit() {
+    this.flightId = Number(this.route.snapshot.paramMap.get('flightId'));
+    this.getAllTourists();
+  }
+
+  onSubmit() {
+    this.submitted = true;
+
+    if (this.addTouristForm.invalid) {
+      return;
+    }
+
+    this.success = true;
+
+    this.flightService.addTouristToFlight(this.flightId, this.addTouristForm.value).subscribe();
+    this.addTouristForm.reset();
+  }
+
+  getAllTourists() : void {
+    this.touristService.getAllTourists()
+      .subscribe(
+        tourists => {
+          this.tourists = tourists;
+        },
+        error => {
+          alert("An error has occurred");
+        });
   }
 
 }

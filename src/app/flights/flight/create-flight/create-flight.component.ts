@@ -10,12 +10,12 @@ import { Flight } from "../../../shared/models/flight";
 })
 export class CreateFlightComponent implements OnInit {
 
-  addFlightForm: FormGroup;
+  private createFlightForm: FormGroup;
   private submitted: boolean = false;
   private success: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private flightService: FlightsService) {
-    this.addFlightForm = this.formBuilder.group({
+    this.createFlightForm = this.formBuilder.group({
       departureTime: ['', Validators.required],
       arrivalTime: ['', Validators.required],
       numberOfSeats: [0, Validators.required],
@@ -29,15 +29,15 @@ export class CreateFlightComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    if (this.addFlightForm.invalid) {
+    if (this.createFlightForm.invalid) {
       return;
     }
 
     this.success = true;
 
-    let newFlight: Flight = this.addFlightForm.value;
+    let newFlight: Flight = this.createFlightForm.value;
     this.flightService.addFlight(newFlight).subscribe();
-    this.addFlightForm.reset();
+    this.createFlightForm.reset();
   }
 
 }

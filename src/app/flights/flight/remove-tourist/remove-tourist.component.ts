@@ -1,54 +1,53 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Tourist} from "../../../shared/models/tourist";
 import {TouristsService} from "../../../shared/services/tourists.service";
 import {FlightsService} from "../../../shared/services/flights.service";
 import {ActivatedRoute} from "@angular/router";
-import {Tourist} from "../../../shared/models/tourist";
-import {Flight} from "../../../shared/models/flight";
 
 @Component({
-  selector: 'app-add-flight',
-  templateUrl: './add-flight.component.html',
-  styleUrls: ['./add-flight.component.scss']
+  selector: 'app-remove-tourist',
+  templateUrl: './remove-tourist.component.html',
+  styleUrls: ['./remove-tourist.component.scss']
 })
-export class AddFlightComponent implements OnInit {
+export class RemoveTouristComponent implements OnInit {
 
-  private touristId: number;
-  private addFlightForm: FormGroup;
+  private flightId: number;
+  private removeTouristForm: FormGroup;
   private submitted: boolean = false;
   private success: boolean = false;
-  private flights: Flight[] = [];
+  private tourists: Tourist[] = [];
 
   constructor(private formBuilder: FormBuilder, private touristService: TouristsService,
               private flightService: FlightsService, private route: ActivatedRoute) {
-    this.addFlightForm = this.formBuilder.group({
+    this.removeTouristForm = this.formBuilder.group({
       id: ['', Validators.required]
     });
   }
 
   ngOnInit() {
-    this.touristId = Number(this.route.snapshot.paramMap.get('touristId'));
-    this.getAllFlights();
+    this.flightId = Number(this.route.snapshot.paramMap.get('flightId'));
+    this.getFlightsTourists();
   }
 
   onSubmit() {
     this.submitted = true;
 
-    if (this.addFlightForm.invalid) {
+    if (this.removeTouristForm.invalid) {
       return;
     }
 
     this.success = true;
 
-    this.touristService.addFlightToTourist(this.touristId, this.addFlightForm.value).subscribe();
-    this.addFlightForm.reset();
+    this.flightService.removeTouristFromFlight(this.flightId, this.removeTouristForm.value).subscribe();
+    this.removeTouristForm.reset();
   }
 
-  getAllFlights() : void {
-    this.flightService.getAllFlights()
+  getFlightsTourists() : void {
+    this.flightService.getTouristsByFlightId(this.flightId)
       .subscribe(
-        flights => {
-          this.flights = flights;
+        tourists => {
+          this.tourists = tourists;
         },
         error => {
           alert("An error has occurred");

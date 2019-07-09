@@ -10,12 +10,12 @@ import { Tourist } from "../../../shared/models/tourist";
 })
 export class CreateTouristComponent implements OnInit {
 
-  addTouristForm: FormGroup;
+  createTouristForm: FormGroup;
   private submitted: boolean = false;
   private success: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private touristService: TouristsService) {
-    this.addTouristForm = this.formBuilder.group({
+    this.createTouristForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       gender: ['', Validators.required],
@@ -31,15 +31,15 @@ export class CreateTouristComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    if (this.addTouristForm.invalid) {
+    if (this.createTouristForm.invalid) {
       return;
     }
 
     this.success = true;
 
-    let newTourist: Tourist = this.addTouristForm.value;
+    let newTourist: Tourist = this.createTouristForm.value;
     this.touristService.addTourist(newTourist).subscribe();
-    this.addTouristForm.reset();
+    this.createTouristForm.reset();
   }
 
 }

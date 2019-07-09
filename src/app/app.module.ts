@@ -24,6 +24,8 @@ import { AddFlightComponent } from './tourists/tourist/add-flight/add-flight.com
 import { CreateFlightComponent } from './flights/flight/create-flight/create-flight.component';
 import { FlightTouristsComponent } from './flights/flight/flight-tourists/flight-tourists.component';
 import { AddTouristComponent } from './flights/flight/add-tourist/add-tourist.component';
+import { RemoveTouristComponent } from './flights/flight/remove-tourist/remove-tourist.component';
+import { RemoveFlightComponent } from "./tourists/tourist/remove-flight/remove-flight.component";
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { AddTouristComponent } from './flights/flight/add-tourist/add-tourist.co
     AddFlightComponent,
     CreateFlightComponent,
     FlightTouristsComponent,
-    AddTouristComponent
+    AddTouristComponent,
+    RemoveTouristComponent,
+    RemoveFlightComponent
   ],
   imports: [
     BrowserModule,
