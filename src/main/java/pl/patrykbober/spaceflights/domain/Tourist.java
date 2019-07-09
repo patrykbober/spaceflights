@@ -22,7 +22,7 @@ public class Tourist
 	private String country;
 	private String remarks;
 	private LocalDate dateOfBirth;
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	@JoinTable(
 			name = "travel",
 			joinColumns = @JoinColumn(name = "tourist_id"),

@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(TouristController.BASE_URL)
+@CrossOrigin
 public class TouristController
 {
 	public static final String BASE_URL = "/api/tourists";
@@ -59,10 +60,10 @@ public class TouristController
 		return new TouristDto(touristService.createTourist(tourist));
 	}
 
-	@PostMapping("/{touristId}/add-flight/{flightId}")
-	public TouristDto addFlightToTourist(@PathVariable Long touristId, @PathVariable Long flightId)
+	@PostMapping("/{touristId}/flights")
+	public TouristDto addFlightToTourist(@PathVariable Long touristId, @RequestBody FlightDto flightId)
 	{
-		Flight flight = flightService.findFlightById(flightId);
+		Flight flight = flightService.findFlightById(flightId.getId());
 		Tourist tourist = touristService.findTouristById(touristId);
 
 		tourist.addFlight(flight);
@@ -70,10 +71,10 @@ public class TouristController
 		return new TouristDto(touristService.updateTourist(tourist));
 	}
 
-	@DeleteMapping("/{touristId}/remove-flight/{flightId}")
-	public TouristDto removeFlightFromTourist(@PathVariable Long touristId, @PathVariable Long flightId)
+	@DeleteMapping("/{touristId}/flights")
+	public TouristDto removeFlightFromTourist(@PathVariable Long touristId, @RequestBody FlightDto flightId)
 	{
-		Flight flight = flightService.findFlightById(flightId);
+		Flight flight = flightService.findFlightById(flightId.getId());
 		Tourist tourist = touristService.findTouristById(touristId);
 
 		tourist.removeFlight(flight);
