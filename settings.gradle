@@ -3,4 +3,4 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-rootProject.name = 'spaceflights'
+rootProject.name = 'spaceflights-api'
