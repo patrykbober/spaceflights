@@ -5,4 +5,5 @@ pluginManagement {
 }
 rootProject.name = 'spaceflights'
 
-include 'spaceflights-api', 'spaceflights-ui'
+include 'spaceflights-api'
+include 'spaceflights-ui'
