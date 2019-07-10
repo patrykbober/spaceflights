@@ -56,3 +56,11 @@ section {
 .table-hover tr {
   cursor: pointer;
 }
+
+a {
+  color: $bgDefault;
+}
+
+a:hover {
+  color: $bgHighlight;
+}

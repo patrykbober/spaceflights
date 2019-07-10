@@ -22,7 +22,7 @@ export class FlightsComponent implements OnInit {
   getAllFlights() : void {
     this.flightService.getAllFlights()
         .subscribe(flights => this.flights = flights,
-            error => alert("An error has occurred"));
+            error => alert(error.error.message));
   }
 
   addFlight(newFlight: Flight) : void {

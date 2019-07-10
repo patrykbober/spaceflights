@@ -13,6 +13,11 @@
         </option>
       </select>
     </div>
+    <div *ngIf="submitted && addFlightForm.controls['id'].errors" class="error">
+      <div *ngIf="addFlightForm.controls['id'].errors.required" class="text-danger">
+        Choose flight you want to add.
+      </div>
+    </div>
   </div>
 
   <!-- Submit button -->

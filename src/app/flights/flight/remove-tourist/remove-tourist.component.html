@@ -13,6 +13,11 @@
         </option>
       </select>
     </div>
+    <div *ngIf="submitted && removeTouristForm.controls['id'].errors" class="error">
+      <div *ngIf="removeTouristForm.controls['id'].errors.required" class="text-danger">
+        Choose tourist you want to remove.
+      </div>
+    </div>
   </div>
 
   <!-- Submit button -->

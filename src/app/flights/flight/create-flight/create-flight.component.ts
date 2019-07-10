@@ -30,11 +30,9 @@ export class CreateFlightComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
     if (this.createFlightForm.invalid) {
       return;
     }
-
     this.success = true;
 
     let newFlight: Flight = this.createFlightForm.value;

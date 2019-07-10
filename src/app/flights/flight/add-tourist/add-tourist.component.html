@@ -13,6 +13,11 @@
         </option>
       </select>
     </div>
+    <div *ngIf="submitted && addTouristForm.controls['id'].errors" class="error">
+      <div *ngIf="addTouristForm.controls['id'].errors.required" class="text-danger">
+        Choose tourist you want to add.
+      </div>
+    </div>
   </div>
 
   <!-- Submit button -->

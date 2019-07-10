@@ -13,6 +13,11 @@
         </option>
       </select>
     </div>
+    <div *ngIf="submitted && removeFlightForm.controls['id'].errors" class="error">
+      <div *ngIf="removeFlightForm.controls['id'].errors.required" class="text-danger">
+        Choose flight you want to remove.
+      </div>
+    </div>
   </div>
 
   <!-- Submit button -->
