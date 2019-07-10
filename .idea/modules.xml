@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/spaceflights.iml" filepath="$PROJECT_DIR$/spaceflights.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spaceflights-api/spaceflights-api.iml" filepath="$PROJECT_DIR$/.idea/modules/spaceflights-api/spaceflights-api.iml" group="spaceflights-api" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spaceflights-api/spaceflights-api_main.iml" filepath="$PROJECT_DIR$/.idea/modules/spaceflights-api/spaceflights-api_main.iml" group="spaceflights-api" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spaceflights-api/spaceflights-api_test.iml" filepath="$PROJECT_DIR$/.idea/modules/spaceflights-api/spaceflights-api_test.iml" group="spaceflights-api" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spaceflights-ui/spaceflights-ui.iml" filepath="$PROJECT_DIR$/.idea/modules/spaceflights-ui/spaceflights-ui.iml" group="spaceflights-ui" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spaceflights-ui/spaceflights-ui_main.iml" filepath="$PROJECT_DIR$/.idea/modules/spaceflights-ui/spaceflights-ui_main.iml" group="spaceflights-ui" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spaceflights-ui/spaceflights-ui_test.iml" filepath="$PROJECT_DIR$/.idea/modules/spaceflights-ui/spaceflights-ui_test.iml" group="spaceflights-ui" />
+    </modules>
+  </component>
+</project>
