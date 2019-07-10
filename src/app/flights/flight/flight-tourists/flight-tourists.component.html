@@ -1,0 +1,28 @@
+<h4>List of tourists</h4>
+
+<p class="alert alert-secondary" *ngIf="!flightTourists?.length">No tourists have been assigned to this flight yet.</p>
+
+<table class="table table-hover" mat-table [dataSource]="flightTourists" matSort *ngIf="flightTourists?.length">
+  <ng-container matColumnDef="id">
+    <th *matHeaderCellDef mat-sort-header> Id </th>
+    <td *matCellDef="let flightTourist"> {{flightTourist.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="firstName">
+    <th *matHeaderCellDef> First name </th>
+    <td *matCellDef="let flightTourist"> {{flightTourist.firstName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="lastName">
+    <th *matHeaderCellDef> Last name </th>
+    <td *matCellDef="let flightTourist"> {{flightTourist.lastName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="dateOfBirth">
+    <th *matHeaderCellDef> Date of birth </th>
+    <td *matCellDef="let flightTourist"> {{flightTourist.dateOfBirth}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="routeToTourist(row.id)"></tr>
+</table>

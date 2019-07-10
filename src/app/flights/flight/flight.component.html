@@ -1,0 +1,25 @@
+<h1>Flight id {{ flight?.id }}</h1>
+
+<hr />
+
+<h4>Departure time</h4>
+<p>{{ flight?.departureTime | date: 'dd.MM.yy, HH:mm' }}</p>
+
+<h4>Arrival time</h4>
+<p>{{ flight?.arrivalTime | date: 'dd.MM.yy, HH:mm' }}</p>
+
+<h4>Number of seats</h4>
+<p>{{ flight?.numberOfSeats }}</p>
+
+<h4>Ticket price</h4>
+<p>{{ flight?.ticketPrice }}</p>
+
+<app-flight-tourists [id]="id"></app-flight-tourists>
+
+<hr />
+
+<form (ngSubmit)="onSubmit()">
+  <button type="submit" class="btn btn-primary mr-1">Delete this flight</button>
+  <button type="button" routerLink="add" class="btn btn-primary mr-1">Add a tourist</button>
+  <button type="button" routerLink="remove" class="btn btn-primary">Remove a tourist</button>
+</form>

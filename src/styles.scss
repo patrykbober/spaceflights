@@ -1,0 +1,66 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url(~bootstrap/dist/css/bootstrap.min.css);
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+$bgDefault      : #59b664;
+$bgHighlight    : #448b4c;
+$colDefault     : #ecf0f1;
+$colHighlight   : #d6d6d6;
+
+body, html {
+  height: 100%;
+  margin: 0 auto;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 1.3em;
+  display: grid;
+  grid-template-columns: 30% auto;
+
+  a {
+    color: white;
+  }
+}
+
+section {
+  width: 80%;
+  margin: 0 auto;
+  padding: 2em;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: $bgDefault;
+  border-color: darken($bgDefault, 5);
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: $bgHighlight;
+  border-color: darken($bgHighlight, 5);
+}
+
+.table-hover tr {
+  cursor: pointer;
+}
+
+a {
+  color: $bgDefault;
+}
+
+a:hover {
+  color: $bgHighlight;
+}

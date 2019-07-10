@@ -1,0 +1,25 @@
+<h1>Add flight to tourist</h1>
+
+<hr />
+
+<form class="form-horizontal" [formGroup]="addFlightForm" (ngSubmit)="onSubmit()">
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">Choose flight</label>
+    <div class="col-md-4">
+      <select formControlName="id" class="form-control custom-select">
+        <option *ngFor="let flight of flights" [value]="flight.id">
+          {{ (flight.departureTime | date: 'dd.MM.yy, HH:mm') + ' - ' + (flight.arrivalTime | date: 'dd.MM.yy, HH:mm') +
+          '; ' + flight.numberOfSeats + '; ' + flight.ticketPrice }}
+        </option>
+      </select>
+    </div>
+    <div *ngIf="submitted && addFlightForm.controls['id'].errors" class="error">
+      <div *ngIf="addFlightForm.controls['id'].errors.required" class="text-danger">
+        Choose flight you want to add.
+      </div>
+    </div>
+  </div>
+
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary">Add flight</button>
+</form>

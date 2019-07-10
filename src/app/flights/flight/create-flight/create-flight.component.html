@@ -1,0 +1,66 @@
+<h1>Add flight</h1>
+
+<hr />
+
+<form class="form-horizontal" [formGroup]="createFlightForm" (ngSubmit)="onSubmit()">
+  <fieldset>
+
+    <!-- Text input-->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label">Departure time</label>
+      <div class="col-md-4">
+        <input type="text" formControlName="departureTime" class="form-control input-md" title="departureTime">
+      </div>
+      <div *ngIf="submitted && createFlightForm.controls['departureTime'].errors" class="error">
+        <div *ngIf="createFlightForm.controls['departureTime'].errors.required" class="text-danger">
+          Departure time is required.
+        </div>
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label">Arrival time</label>
+      <div class="col-md-4">
+        <input type="text" formControlName="arrivalTime" class="form-control input-md" title="arrivalTime">
+      </div>
+      <div *ngIf="submitted && createFlightForm.controls['arrivalTime'].errors" class="error">
+        <div *ngIf="createFlightForm.controls['arrivalTime'].errors.required" class="text-danger">
+          Arrival time is required.
+        </div>
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label">Number of seats</label>
+      <div class="col-md-4">
+        <input type="text" formControlName="numberOfSeats" class="form-control input-md" title="numberOfSeats">
+      </div>
+      <div *ngIf="submitted && createFlightForm.controls['numberOfSeats'].errors" class="error">
+        <div *ngIf="createFlightForm.controls['numberOfSeats'].errors.required" class="text-danger">
+          Number of seats is required.
+        </div>
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label">Ticket price</label>
+      <div class="col-md-4">
+        <input type="text" formControlName="ticketPrice" class="form-control input-md" title="ticketPrice">
+      </div>
+      <div *ngIf="submitted && createFlightForm.controls['ticketPrice'].errors" class="error">
+        <div *ngIf="createFlightForm.controls['ticketPrice'].errors.required" class="text-danger">
+          Ticket price is required.
+        </div>
+      </div>
+    </div>
+
+  </fieldset>
+
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary">Add flight</button>
+
+</form>
+

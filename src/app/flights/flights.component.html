@@ -1,0 +1,40 @@
+<h1>List of flights</h1>
+
+<hr />
+
+<p class="alert-info" *ngIf="!flights?.length">No flights found.</p>
+
+<table class="table table-hover" mat-table [dataSource]="flights" matSort *ngIf="flights?.length">
+  <ng-container matColumnDef="id">
+    <th *matHeaderCellDef mat-sort-header> Id </th>
+    <td *matCellDef="let flight"> {{flight.id}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="departureTime">
+    <th *matHeaderCellDef> Departure time </th>
+    <td *matCellDef="let flight"> {{flight.departureTime | date: 'dd.MM.yy, HH:mm' }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="arrivalTime">
+    <th *matHeaderCellDef> Arrival time </th>
+    <td *matCellDef="let flight"> {{flight.arrivalTime | date: 'dd.MM.yy, HH:mm' }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="numberOfSeats">
+    <th *matHeaderCellDef> Number of seats </th>
+    <td *matCellDef="let flight"> {{flight.numberOfSeats}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="ticketPrice">
+    <th *matHeaderCellDef> Ticket price </th>
+    <td *matCellDef="let flight"> {{flight.ticketPrice}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="routeToFlight(row.id)"></tr>
+</table>
+
+<hr />
+
+<button routerLink="add" class="btn btn-primary mr-1">Add new flight</button>
+<!--<button (click)="addTheFlight()" class="btn btn-info">Add the Flight</button>-->

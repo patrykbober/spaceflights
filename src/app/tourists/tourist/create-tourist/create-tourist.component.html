@@ -1,0 +1,90 @@
+<h1>Add tourist</h1>
+
+<hr />
+
+<form class="form-horizontal" [formGroup]="createTouristForm" (ngSubmit)="onSubmit()">
+  <fieldset>
+
+    <!-- Text input-->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label">First name</label>
+      <div class="col-md-4">
+        <input type="text" formControlName="firstName" class="form-control input-md" title="firstName">
+      </div>
+      <div *ngIf="submitted && createTouristForm.controls['firstName'].errors" class="error">
+        <div *ngIf="createTouristForm.controls['firstName'].errors.required" class="text-danger">
+          First name is required.
+        </div>
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label">Last name</label>
+      <div class="col-md-4">
+        <input type="text" formControlName="lastName" class="form-control input-md" title="lastName">
+      </div>
+      <div *ngIf="submitted && createTouristForm.controls['lastName'].errors" class="error">
+        <div *ngIf="createTouristForm.controls['lastName'].errors.required" class="text-danger">
+          Last name is required.
+        </div>
+      </div>
+    </div>
+
+    <!--Select Basic-->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label">Gender</label>
+      <div class="col-md-4">
+        <select formControlName="gender" class="form-control" title="gender">
+          <option value="FEMALE">Female</option>
+          <option value="MALE">Male</option>
+        </select>
+      </div>
+      <div *ngIf="submitted && createTouristForm.controls['gender'].errors" class="error">
+        <div *ngIf="createTouristForm.controls['gender'].errors.required" class="text-danger">
+          Gender is required.
+        </div>
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label">Country</label>
+      <div class="col-md-4">
+        <input type="text" formControlName="country" class="form-control input-md" title="country">
+      </div>
+      <div *ngIf="submitted && createTouristForm.controls['country'].errors" class="error">
+        <div *ngIf="createTouristForm.controls['country'].errors.required" class="text-danger">
+          Country is required.
+        </div>
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label">Remarks</label>
+      <div class="col-md-4">
+        <input type="text" formControlName="remarks" class="form-control input-md" title="remarks">
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label">Date of birth</label>
+      <div class="col-md-4">
+        <input type="text" formControlName="dateOfBirth" class="form-control input-md" title="dateOfBirth">
+      </div>
+      <div *ngIf="submitted && createTouristForm.controls['dateOfBirth'].errors" class="error">
+        <div *ngIf="createTouristForm.controls['dateOfBirth'].errors.required" class="text-danger">
+          Date of birth is required.
+        </div>
+      </div>
+    </div>
+
+  </fieldset>
+
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary">Add tourist</button>
+
+</form>
+
