@@ -47,4 +47,17 @@ public class Tourist
 		MALE,
 		UNKNOWN
 	}
+
+	@Override
+	public String toString() {
+		return "Tourist{" +
+				"id=" + id +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", gender=" + gender +
+				", country='" + country + '\'' +
+				", remarks='" + remarks + '\'' +
+				", dateOfBirth=" + dateOfBirth +
+				'}';
+	}
 }

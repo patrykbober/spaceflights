@@ -18,8 +18,8 @@ export class CreateFlightComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private flightService: FlightsService,
               private router: Router) {
     this.createFlightForm = this.formBuilder.group({
-      departureTime: ['YYYY-MM-DDTHH:mm:ss', Validators.required],
-      arrivalTime: ['YYYY-MM-DDTHH:mm:ss', Validators.required],
+      departureTime: ['1970-01-01T00:00:00', Validators.required],
+      arrivalTime: ['1970-01-01T00:00:00', Validators.required],
       numberOfSeats: [0, Validators.required],
       ticketPrice: [0, Validators.required]
     });

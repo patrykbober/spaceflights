@@ -22,4 +22,15 @@ public class Flight
 	private Integer ticketPrice;
 	@ManyToMany(mappedBy = "flights", cascade = CascadeType.ALL)
 	private Set<Tourist> tourists = new HashSet<>();
+
+	@Override
+	public String toString() {
+		return "Flight{" +
+				"id=" + id +
+				", departureTime=" + departureTime +
+				", arrivalTime=" + arrivalTime +
+				", numberOfSeats=" + numberOfSeats +
+				", ticketPrice=" + ticketPrice +
+				'}';
+	}
 }
